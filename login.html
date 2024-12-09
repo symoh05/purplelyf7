@@ -22,21 +22,10 @@
     <script>
         // Handle form submission
         document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form's default submission behavior
+            event.preventDefault(); // Prevent the form's default behavior
 
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-
-            console.log('Username:', username);
-            console.log('Password:', password);
-
-            // Simulate authentication check
-            if (username === 'user' && password === 'password') {
-                alert('Login successful!');
-                window.location.href = 'index.html'; // Redirect to index.html on success
-            } else {
-                alert('Invalid username or password');
-            }
+            // Always redirect to index.html regardless of credentials
+            window.location.href = 'index.html';
         });
     </script>
 </body>
