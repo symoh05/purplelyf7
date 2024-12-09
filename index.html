@@ -13,4 +13,10 @@
 <body>
     
 </body>
+<script>
+    const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+    if (!isLoggedIn) {
+        window.location.href = 'login.html';
+    }
+</script>
 </html>
