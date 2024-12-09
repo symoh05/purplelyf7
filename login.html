@@ -19,6 +19,23 @@
             <p>Do not have an account? <a href="register.html">Register me</a></p>
         </form>
     </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Simulate login validation (replace this with your actual logic)
+    if (username === 'user' && password === 'password') {
+        alert('Login successful!');
+        window.location.href = 'index.html'; // Redirect to the index page
+    } else {
+        alert('Invalid username or password. Try again!');
+    }
+});
+    </script>
+
     
 </body>
 </html>
