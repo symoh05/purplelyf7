@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - PurpleLyf</title>
+  <link rel="stylesheet" href="login.css">
 </head>
 <body>
-    <div class="login-container">
-        <form id="loginForm">
-            <h1>PurpleLyf</h1>
-            <label for="username">Username</label>
-            <input type="text" id="username" placeholder="Enter your username" required>
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="Enter your password" required>
-            <button type="submit">Login</button>
-            <p>Do not have an account? <a href="register.html">Register me</a></p>
-        </form>
-    </div>
+  <div class="login-container">
+    <form id="loginForm">
+      <h1>PurpleLyf</h1>
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="Enter your username" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
 
-    <script>
-        // Handle form submission
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the form's default behavior
-
-            // Always redirect to index.html regardless of credentials
-            window.location.href = 'index.html';
-        });
-    </script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+      event.preventDefault();
+      window.location.href = 'index.html';
+    });
+  </script>
 </body>
 </html>
