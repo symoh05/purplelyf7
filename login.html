@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="styles.css">
-    
 </head>
 <body>
     <div class="login-container">
-        <form action="index.html">
+        <form id="loginForm">
             <h1>PurpleLyf</h1>
             <label for="username">Username</label>
             <input type="text" id="username" placeholder="Enter your username" required>
@@ -19,28 +18,26 @@
             <p>Do not have an account? <a href="register.html">Register me</a></p>
         </form>
     </div>
+
     <script>
+        // Handle form submission
         document.getElementById('loginForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    console.log('Form submitted');
+            event.preventDefault(); // Prevent the form's default submission behavior
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    console.log(`Username: ${username}, Password: ${password}`);
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-    if (username === 'user' && password === 'password') {
-        console.log('Login successful');
-        window.location.href = 'index.html';
-    } else {
-        console.log('Invalid login');
-        alert('Invalid username or password. Try again!');
-    }
-});
+            console.log('Username:', username);
+            console.log('Password:', password);
 
-        
-
+            // Simulate authentication check
+            if (username === 'user' && password === 'password') {
+                alert('Login successful!');
+                window.location.href = 'index.html'; // Redirect to index.html on success
+            } else {
+                alert('Invalid username or password');
+            }
+        });
     </script>
-
-    
 </body>
 </html>
