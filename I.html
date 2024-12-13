@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Suspension Notice</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            background-color: maroon;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        h1 {
+            color: yellow;
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .warning-sign {
+            width: 100px;
+            height: 100px;
+            background-color: #f39c12;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .warning-sign:before, .warning-sign:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #d9534f;
+        }
+
+        .warning-sign:before {
+            width: 10px;
+            height: 40px;
+            border-radius: 5px;
+        }
+
+        .warning-sign:after {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            top: 20%;
+            background-color: #fff;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 20px 0;
+            color: #fff;
+        }
+
+        .important {
+            font-weight: bold;
+            color:yellow;
+        }
+
+        .countdown {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            color:black;
+        }
+
+        .action-button {
+            margin-top: 20px;
+            padding: 15px 25px;
+            background-color: darkblue;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        .action-button:hover {
+            background-color: blueviolet;
+        }
+
+        .footer {
+            font-size: 14px;
+            margin-top: 30px;
+            color: #fff;
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 30px;
+            }
+            .warning-sign {
+                width: 80px;
+                height: 80px;
+            }
+            .warning-sign:before {
+                width: 8px;
+                height: 30px;
+            }
+            .countdown {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-sign"></div>
+    <h1>This Website is Suspended</h1>
+    <p>If you're the owner of this website, your account has been suspended due to an outstanding payment. The agreed payment amount has not been received.</p>
+    <p class="important">Please note: If the payment is not received within the next <span class="countdown" id="countdown"></span>, your website will be permanently terminated.</p>
+    <p>If you believe this message was sent in error, please contact support immediately.</p>
+    <a href="support.html" class="action-button">Contact Support</a>
+    <div class="footer">
+        <p>For further inquiries, please reach out to our support team at <a href="mailto:support@example.com">support@example.com</a>.</p>
+        <p>Thank you for your attention.</p>
+    </div>
+
+    <script>
+        // Countdown timer for 10 days
+        const countdownElement = document.getElementById("countdown");
+
+        // 10 days from now in milliseconds
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 10);
+
+        function updateCountdown() {
+            const now = new Date();
+            const timeLeft = targetDate - now;
+
+            if (timeLeft <= 0) {
+                countdownElement.innerHTML = "00:00:00";
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            setTimeout(updateCountdown, 1000);
+        }
+
+        // Start countdown
+        updateCountdown();
+    </script>
+</body>
+</html>
