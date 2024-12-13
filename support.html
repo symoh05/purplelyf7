@@ -1,41 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>support team</title>
-  <style>
-    /* Reset some default styles */
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #000;
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Hack Simulation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            overflow: hidden;
+        }
 
-    .emoji {
-      font-size: 150px; /* Adjust size as needed */
-      color: white;
-      text-align: center;
-      animation: bounce 1s infinite;
-    }
+        canvas {
+            display: block;
+        }
 
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-30px);
-      }
-    }
-  </style>
+        .warning {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: red;
+            font-family: "Courier New", monospace;
+            font-size: 24px;
+            text-transform: uppercase;
+            text-align: center;
+            animation: flicker 1.5s infinite;
+            display: none;
+        }
+
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+                opacity: 1;
+            }
+            20%, 24%, 55% {
+                opacity: 0.4;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Display the emoji -->
-  <div class="emoji">🖕🏿</div>
+    <canvas id="matrix"></canvas>
+    <div id="warning" class="warning">System Breach Detected!</div>
+
+    <script>
+        const canvas = document.getElementById("matrix");
+        const context = canvas.getContext("2d");
+        const warning = document.getElementById("warning");
+
+        // Set canvas to full screen
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const fontSize = 20; // Adjust for larger text
+        const columns = Math.floor(canvas.width / fontSize); // Number of columns
+        const drops = new Array(columns).fill(1); // Tracks vertical drops for each column
+
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*!";
+        const colors = ["#00ff00", "#0f0", "#0b0"];
+
+        // Function to draw matrix effect
+        function drawMatrix() {
+            context.fillStyle = "rgba(0, 0, 0, 0.05)"; // Slightly clear screen
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            context.fillStyle = colors[Math.floor(Math.random() * colors.length)]; // Random green shade
+            context.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                const x = i * fontSize; // X coordinate for column
+                const y = drops[i] * fontSize; // Y coordinate for row
+
+                context.fillText(text, x, y);
+
+                // Reset drop when it reaches the bottom or randomly for realism
+                if (y > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        // Start the matrix effect
+        setInterval(drawMatrix, 50); // Adjust speed of matrix
+
+        // Show "System Breach" warning
+        setTimeout(() => {
+            warning.style.display = "block";
+        }, 5000); // Show after 5 seconds
+
+        // End the simulation
+        setTimeout(() => {
+            context.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+            warning.style.display = "none";
+            context.fillStyle = "green";
+            context.font = "30px monospace";
+            context.textAlign = "center";
+            context.fillText("System Restored.", canvas.width / 2, canvas.height / 2);
+        }, 2 * 60 * 1000); // End after 2 minutes
+    </script>
 </body>
 </html>
