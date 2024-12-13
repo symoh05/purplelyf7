@@ -68,6 +68,28 @@
             margin: 20px 0;
             color: #fff;
         }
+        
+        .footer {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* White text color */
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 14px;
+}
+
+.footer .company-name {
+    font-weight: bold;
+    color: #e67e22; /* Orange color for the company name */
+}
+
+.footer p {
+    margin: 0;
+}
+
 
         .important {
             font-weight: bold;
@@ -95,16 +117,6 @@
             background-color: blueviolet;
         }
 
-        .footer {
-            font-size: 14px;
-            margin-top: 30px;
-            color: #fff;
-        }
-
-        .footer a {
-            color: #fff;
-            text-decoration: none;
-        }
 
         @media screen and (max-width: 600px) {
             h1 {
@@ -131,19 +143,27 @@
     <p class="important">Please note: If the payment is not received within the next <span class="countdown" id="countdown"></span>, your website will be permanently terminated.</p>
     <p>If you believe this message was sent in error, please contact support immediately.</p>
     <a href="support.html" class="action-button">Contact Support</a>
-    <div class="footer">
-        <p>For further inquiries, please reach out to our support team at <a href="support@gmail.com">support@gmail.com</a>.</p>
+    <div class="foote">
+        <p>For further inquiries, please reach out to our support team at <a href="mailto:support@example.com">support@gmail.com</a>.</p>
         <p>Thank you for your attention.</p>
     </div>
 
     <script>
-        // Countdown timer for 10 days
+        // Retrieve the saved target date from localStorage, or set it if not available
+        let targetDate = localStorage.getItem("targetDate");
+
+        if (!targetDate) {
+            // 10 days from now in milliseconds
+            targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 10);
+            localStorage.setItem("targetDate", targetDate);
+        } else {
+            targetDate = new Date(targetDate);
+        }
+
         const countdownElement = document.getElementById("countdown");
 
-        // 10 days from now in milliseconds
-        const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 10);
-
+        // Function to update the countdown
         function updateCountdown() {
             const now = new Date();
             const timeLeft = targetDate - now;
@@ -163,8 +183,13 @@
             setTimeout(updateCountdown, 1000);
         }
 
-        // Start countdown
+        // Start the countdown
         updateCountdown();
     </script>
+   <div class="footer">
+    <p>&copy; 2024 Developed and maintained by <span class="company-name">Easecode Web Developers</span></p>
+</div>
+
+
 </body>
 </html>
