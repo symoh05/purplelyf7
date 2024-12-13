@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Hacked</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: red;
+      font-family: 'Courier New', Courier, monospace;
+      overflow: hidden;
+    }
+
+    .hacked {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 4rem;
+      font-weight: bold;
+      text-align: center;
+      color: red;
+      text-shadow: 0 0 10px red, 0 0 20px red;
+      z-index: 100;
+      animation: flicker 1.5s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.8;
+      }
+    }
+
+    .terminal {
+      position: absolute;
+      width: 400px;
+      height: 200px;
+      background: rgba(255, 0, 0, 0.1);
+      color: #ff5555;
+      font-size: 12px;
+      padding: 10px;
+      border: 1px solid red;
+      box-shadow: 0 0 10px red;
+      overflow: hidden;
+      animation: float 15s infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      50% {
+        transform: translateY(10px) translateX(10px);
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+      }
+    }
+
+    .terminal-content {
+      white-space: pre-wrap;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hacked Message -->
+  <div class="hacked">SYSTEM HACKED!</div>
+
+  <!-- Terminals -->
+  <script>
+    const terminalData = [
+      `Loading scripts...\nConnecting to system...\nAccess granted!`,
+      `Running exploits...\nPayload injected...\nFile encryption started.`,
+      `Deleting logs...\nAccessing restricted files...\nExtracting data...`,
+      `Overriding system controls...\nCritical failure detected!`,
+      `Self-destruct sequence initiated...\nTerminating processes.`,
+    ];
+
+    function createTerminal(index) {
+      const terminal = document.createElement("div");
+      terminal.classList.add("terminal");
+
+      terminal.style.top = `${Math.random() * (window.innerHeight - 200)}px`;
+      terminal.style.left = `${Math.random() * (window.innerWidth - 400)}px`;
+      terminal.style.animationDelay = `${Math.random() * 3}s`;
+
+      const content = document.createElement("div");
+      content.classList.add("terminal-content");
+
+      terminal.appendChild(content);
+      document.body.appendChild(terminal);
+
+      simulateTyping(content, terminalData[index % terminalData.length]);
+    }
+
+    function simulateTyping(container, text) {
+      let index = 0;
+
+      const interval = setInterval(() => {
+        if (index < text.length) {
+          container.textContent += text[index++];
+        } else {
+          clearInterval(interval);
+        }
+      }, 50);
+    }
+
+    // Create multiple terminals
+    for (let i = 0; i < 8; i++) {
+      createTerminal(i);
+    }
+  </script>
+</body>
+</html>
